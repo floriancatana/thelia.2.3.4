@@ -18,9 +18,9 @@ GNU General Public License : http://www.gnu.org/licenses/
 -->
 
 {* Declare assets directory, relative to template base directory *}
-{declare_assets directory='assets/dist'}
+{declare_assets directory='interiorz/assets/dist'}
 {* Set the default translation domain, that will be used by {intl} when the 'd' parameter is not set *}
-{default_translation_domain domain='fo.default'}
+{default_translation_domain domain='fo.interiorz'}
 
 {* -- Define some stuff for Smarty ------------------------------------------ *}
 {config_load file='variables.conf'}
@@ -56,9 +56,10 @@ GNU General Public License : http://www.gnu.org/licenses/
         <meta name="description" content="{if $page_description}{$page_description}{else}{$store_description|strip|truncate:120}{/if}">
     {/block}
 
-    {stylesheets file='assets/dist/css/thelia.min.css'}
+    {stylesheets file='interiorz/assets/dist/css/thelia.min.css'}
         <link rel="stylesheet" href="{$asset_url}">
     {/stylesheets}
+    
     {*
      If you want to generate the CSS assets on the fly, just replace the stylesheet inclusion above by the following.
      Then, in your back-office, go to Configuration -> System Variables and set process_assets to 1.
@@ -67,7 +68,7 @@ GNU General Public License : http://www.gnu.org/licenses/
 
      See http://doc.thelia.net/en/documentation/templates/assets.html#activate-automatic-assets-generation for details.
 
-    {stylesheets file='assets/src/less/thelia.less' filters='less'}
+    {stylesheets file='interiorz/assets/src/less/thelia.less' filters='less'}
         <link rel="stylesheet" href="{$asset_url}">
     {/stylesheets}
 
@@ -81,7 +82,7 @@ GNU General Public License : http://www.gnu.org/licenses/
     {* PNG file favicons are not supported by IE 10 and lower. In this case, we use the default .ico file in the template. *}
 
     <!--[if lt IE 11]>
-    <link rel="shortcut icon" type="image/x-icon" href="{image file='assets/dist/img/favicon.ico'}" />
+    <link rel="shortcut icon" type="image/x-icon" href="{image file='interiorz/assets/dist/img/favicon.ico'}" />
     <![endif]-->
 
     {local_media type="favicon" width=32 height=32}
@@ -97,12 +98,12 @@ GNU General Public License : http://www.gnu.org/licenses/
     {* HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries *}
     <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
-    {javascripts file="assets/dist/js/vendors/html5shiv.min.js"}
+    {javascripts file="interiorz/assets/dist/js/vendors/html5shiv.min.js"}
         <script>window.html5 || document.write('<script src="{$asset_url}"><\/script>');</script>
     {/javascripts}
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
-    {javascripts file="assets/dist/js/vendors/respond.min.js"}
+    {javascripts file="interiorz/assets/dist/js/vendors/respond.min.js"}
         <script>window.respond || document.write('<script src="{$asset_url}"><\/script>');</script>
     {/javascripts}
     <![endif]-->
@@ -110,64 +111,51 @@ GNU General Public License : http://www.gnu.org/licenses/
     {hook name="main.head-bottom"}
 </head>
 <body class="{block name="body-class"}{/block}" itemscope itemtype="http://schema.org/WebPage">
-    {hook name="main.body-top"}
-
-    <!-- Accessibility -->
-    <a class="sr-only" href="#content">{intl l="Skip to content"}</a>
-
-    <div class="page" role="document">
-
-        <div class="header-container" itemscope itemtype="http://schema.org/WPHeader">
-            {hook name="main.header-top"}
-            <div class="navbar navbar-default navbar-secondary" itemscope itemtype="http://schema.org/SiteNavigationElement">
-                <div class="container">
-
-                    <div class="navbar-header">
-                        <!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-secondary">
-                            <span class="sr-only">{intl l="Toggle navigation"}</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand visible-xs" href="{navigate to="index"}">{$store_name}</a>
-                    </div>
-
-                    {ifhook rel="main.navbar-secondary"}
-                        {* Place everything within .nav-collapse to hide it until above 768px *}
-                        <nav class="navbar-collapse collapse nav-secondary" role="navigation" aria-label="{intl l="Secondary Navigation"}">
-                            {hook name="main.navbar-secondary"}
-                        </nav>
-                    {/ifhook}
+   
+        <div class="" itemscope itemtype="http://schema.org/WPHeader">
+            <div class="row" style="border: white; border-bottom-style: solid; height: 68px; border-width: 10px;">
+                <div class="logo col-sm-4" style="background-color: #474747;">
+                    <a href="{navigate to="index"}" title="{$store_name}" style="float: right">
+                      {local_media type="logo"}
+                      <img src="{$MEDIA_URL}" alt="{$store_name}">
+                      {/local_media}
+                  </a>
+                 </div>
+                <div class="col-sm-8" style="background-color: #12b3a6; float: left; border: white; border-left-style: solid; border-width: 10px; height: 55px;">  
+                    <div class="row">
+                        {ifhook rel="main.navbar-secondary"}
+                            {* Place everything within .nav-collapse to hide it until above 768px *}
+                            <nav class="navbar-collapse collapse nav-secondary" style="width: 100%" role="navigation" aria-label="{intl l="Secondary Navigation"}">
+                                {hook name="main.navbar-secondary"}
+                            </nav>
+                        {/ifhook}
+                  </div>
+                 </div>
+            </div>
+            <div class="row">   
+                <div class="col-sm-12">
+                    {hook name="main.header-top"}
                 </div>
             </div>
+        </div>
+                
+        <div class="container" role="document">
 
-
-            <header class="container" role="banner">
-                <div class="header row">
-                    <h1 class="logo container hidden-xs">
-                        <a href="{navigate to="index"}" title="{$store_name}">
-                            {local_media type="logo"}
-                            <img src="{$MEDIA_URL}" alt="{$store_name}">
-                            {/local_media}
-                        </a>
-                    </h1>
-                    {hook name="main.navbar-primary"}
-                </div>
-            </header><!-- /.header -->
-
-            {hook name="main.header-bottom"}
-        </div><!-- /.header-container -->
-
-        <main class="main-container" role="main">
-            <div class="container">
-                {hook name="main.content-top"}
-                {block name="breadcrumb"}{include file="misc/breadcrumb.tpl"}{/block}
-                <div id="content">{block name="main-content"}{/block}</div>
-                {hook name="main.content-bottom"}
-            </div><!-- /.container -->
-        </main><!-- /.main-container -->
-
+            <h2 class="ui dividing header brand">
+                Top Neuheiten
+            </h2>
+            
+            <main class="main-container" role="main">
+                <div class="container">
+                    {hook name="main.content-top"}
+                    {block name="breadcrumb"}{include file="misc/breadcrumb.tpl"}{/block}
+                    <div id="content">{block name="main-content"}{/block}</div>
+                    {hook name="main.content-bottom"}
+                </div><!-- /.container -->
+            </main><!-- /.main-container -->
+            
+        </div>
+                
         <section class="footer-container" itemscope itemtype="http://schema.org/WPFooter">
 
             {ifhook rel="main.footer-top"}
@@ -266,7 +254,7 @@ GNU General Public License : http://www.gnu.org/licenses/
     <!-- Jquery -->
     <!--[if lt IE 9]><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> <![endif]-->
     <!--[if (gte IE 9)|!(IE)]><!--><script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script><!--<![endif]-->
-    {javascripts file="assets/dist/js/vendors/jquery.min.js"}
+    {javascripts file="interiorz/assets/dist/js/vendors/jquery.min.js"}
         <script>window.jQuery || document.write('<script src="{$asset_url}"><\/script>');</script>
     {/javascripts}
 
@@ -277,11 +265,11 @@ GNU General Public License : http://www.gnu.org/licenses/
     {/if}
 
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    {javascripts file="assets/dist/js/vendors/bootstrap.min.js"}
+    {javascripts file="interiorz/assets/dist/js/vendors/bootstrap.min.js"}
         <script>if(typeof($.fn.modal) === 'undefined') { document.write('<script src="{$asset_url}"><\/script>'); }</script>
     {/javascripts}
 
-    {javascripts file="assets/dist/js/vendors/bootbox.js"}
+    {javascripts file="interiorz/assets/dist/js/vendors/bootbox.js"}
         <script src="{$asset_url}"></script>
     {/javascripts}
 
@@ -299,7 +287,7 @@ GNU General Public License : http://www.gnu.org/licenses/
     {block name="javascript-initialization"}{/block}
 
     <!-- Custom scripts -->
-    <script src="{javascript file='assets/dist/js/thelia.min.js'}"></script>
+    <script src="{javascript file='interiorz/assets/dist/js/thelia.min.js'}"></script>
 
     {hook name="main.body-bottom"}
 </body>

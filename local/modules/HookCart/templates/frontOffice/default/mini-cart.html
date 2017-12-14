@@ -72,7 +72,22 @@
 {elseloop rel="cartloop"}
     <li class="dropdown pull-right  cart-container">
         <a href="{url path="/cart"}" rel="nofollow" class="cart">
-            {intl l="Cart" d="hookcart.fo.default"} <span class="badge">0</span>
+           <span class="badge" style="    height: 38px;
+    width: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(0, 0, 0, 0.87);
+    cursor: pointer;
+    border: 1px solid black; float: left; background-color: white;">0</span> 
+    <span style="    height: 38px;
+    width: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(0, 0, 0, 0.87);
+    cursor: pointer;
+    border: 1px solid black; float: left; margin-left: -1px; background-color: white;"> {intl l="Cart" d="hookcart.fo.default"} </span>
         </a>
         <div class="dropdown-menu cart-content">
             <p>{intl l="You have no items in your shopping cart." d="hookcart.fo.default"}</p>

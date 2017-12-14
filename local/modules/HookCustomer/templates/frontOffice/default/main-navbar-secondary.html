@@ -1,12 +1,14 @@
-<ul class="nav navbar-nav navbar-customer navbar-right">
+<ul class="nav navbar-nav navbar-customer d-block">
     {loop type="auth" name="customer_info_block" role="CUSTOMER"}
-    <li><a href="{url path="/logout"}" class="logout">{intl l="Log out!" d="hookcustomer.fo.default"}</a></li>
-    <li><a href="{url path="/account"}" class="account">{intl l="My Account" d="hookcustomer.fo.default"}</a></li>
+    <li class="col-sm-3"><a href="{url path="/logout"}" class="logout">{intl l="Log out!" d="hookcustomer.fo.default"}</a></li>
+    <li class="col-sm-3"><a href="{url path="/account"}" class="account">{intl l="My Account" d="hookcustomer.fo.default"}</a></li>
     {/loop}
     {elseloop rel="customer_info_block"}
-    <li><a href="{url path="/register"}" class="register">{intl l="Register!" d="hookcustomer.fo.default"}</a></li>
-    <li class="dropdown">
-        <a href="{url path="/login"}" class="login dropdown-toggle">{intl l="Log In!" d="hookcustomer.fo.default"}</a>
+    <li><a style="color: white;
+    font-size: initial;" href="{url path="/register"}" class="register fa-pencil-square-o">{intl l="Register!" d="hookcustomer.fo.default"}</a></li>
+    <li class="dropdown" >
+        <a style="color: white;
+    font-size: initial;" href="{url path="/login"}" class="login fa-sign-in">{intl l="Log In!" d="hookcustomer.fo.default"}</a>
         <div class="dropdown-menu">
             {form name="thelia.front.customer.login"}
             <form id="form-login-mini" action="{url path="/login"}" method="post" {form_enctype}>

@@ -3,7 +3,7 @@
     <div id="carousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-wrapper">
             <div class="carousel-inner">
-                {loop type="carousel" name="carousel.front" width="1200" height="390" resize_mode="borders"}
+                {loop type="carousel" name="carousel.front" width="1200" resize_mode="borders"}
                 <figure class="item {if $LOOP_COUNT == 1}active{/if}">
                     {if $URL}<a href="{$URL|default:'#'}">{/if}
                     <img src="{$IMAGE_URL}" alt="{$ALT}">
